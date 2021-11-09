@@ -1,14 +1,12 @@
 <h1>Update Task List</h1>
 
-<%= form_for(@task) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :details %>
-  <%= f.text_field :details %>
-  <%= f.label :completed %>
-  <%= f.select :completed, options_for_select([['Yes', true], ['No', false]]) %>
-  <%= f.submit %>
-<% end %>
+<%= render "form", task: @task %>
 
 <br>
 <%= link_to "Back to task list", tasks_path %>
+
+<br>
+<%= link_to "Delete #{@task.title}",
+            task_path(@task),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
